@@ -1,13 +1,16 @@
 FROM ubuntu:latest
-RUN apt-get update && apt-get -y upgrade
-RUN	apt-get install -y unbound wget
+RUN apt-get update -qq && \
+    apt-get install -yqq unbound wget
 
 WORKDIR /
 ADD src/prep.sh /prep.sh
 ADD src/root.key /var/unbound/etc/
 ADD src/unbound.conf /etc/unbound/unbound.conf
+ADD src/anchor-resolv.conf /anchor-resolv.conf
+ADD src/update-key.sh /update-key.sh
+ADD src/entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /prep.sh
+RUN chmod +x /prep.sh /entrypoint.sh /update-key.sh
 RUN /prep.sh
 
 RUN apt-get -y autoremove && \
