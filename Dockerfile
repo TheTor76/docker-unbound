@@ -22,4 +22,4 @@ VOLUME ["/var/log/"]
 EXPOSE 53
 EXPOSE 53/UDP
 
-ENTRYPOINT ["/usr/sbin/unbound", "-d", "-c", "/etc/unbound/unbound.conf"]
+ENTRYPOINT ["/entrypoint.sh"]
