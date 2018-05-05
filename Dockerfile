@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:bionic
 RUN apt-get update -qq && \
     apt-get install -yqq unbound wget
 
