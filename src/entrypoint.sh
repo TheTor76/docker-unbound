@@ -1,4 +1,17 @@
 #!/usr/bin/env bash
+EXTRA_SCRIPT="";
+
+while getopts s: option
+do
+ case "${option}"
+ in
+ s) EXTRA_SCRIPT=${OPTARG};;
+ esac
+done
+
+if [ -f "$EXTRA_SCRIPT" ]; then
+	bash $EXTRA_SCRIPT;
+fi
 
 echo "Updating root anchor";
 /update-key.sh;
